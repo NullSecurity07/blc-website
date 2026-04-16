@@ -21,11 +21,15 @@ export function Testimonials() {
     return () => clearInterval(interval)
   }, [isPaused])
 
-  // Scroll active card into view
+  // Scroll active card into view within the carousel container only
   useEffect(() => {
     if (!scrollRef.current) return
     const card = scrollRef.current.children[activeIndex] as HTMLElement
-    card?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+    if (!card) return
+    scrollRef.current.scrollTo({
+      left: card.offsetLeft - scrollRef.current.offsetLeft,
+      behavior: 'smooth',
+    })
   }, [activeIndex])
 
   const prev = () =>
