@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { InstagramLogo, YoutubeLogo, LinkedinLogo } from '@phosphor-icons/react/dist/ssr'
-import { NAV_LINKS, PROGRAMS, CONTACT } from '@/lib/constants'
+import { NAV_LINKS, PROGRAMS, CONTACT, SOCIAL } from '@/lib/constants'
 
 export function Footer() {
   return (
@@ -15,21 +15,27 @@ export function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href={SOCIAL.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="hover:text-white transition-colors"
               >
                 <InstagramLogo size={20} />
               </a>
               <a
-                href="#"
+                href={SOCIAL.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="YouTube"
                 className="hover:text-white transition-colors"
               >
                 <YoutubeLogo size={20} />
               </a>
               <a
-                href="#"
+                href={SOCIAL.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="LinkedIn"
                 className="hover:text-white transition-colors"
               >

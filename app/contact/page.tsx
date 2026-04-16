@@ -4,9 +4,6 @@ import { Chip } from '@/components/ui/Chip'
 import { Button } from '@/components/ui/Button'
 import { CONTACT } from '@/lib/constants'
 
-// ⚠️ TEMP: Sign up at formspree.io, create a form, and replace this with your real form ID
-const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'
-
 type Status = 'idle' | 'sending' | 'success' | 'error'
 
 const FIELDS = [
@@ -23,11 +20,14 @@ export default function Contact() {
     e.preventDefault()
     setStatus('sending')
 
+    const form = e.currentTarget
+    const data = Object.fromEntries(new FormData(form).entries())
+
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        body: new FormData(e.currentTarget),
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       })
       if (res.ok) {
         setStatus('success')

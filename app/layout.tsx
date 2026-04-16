@@ -58,7 +58,7 @@ const organizationSchema = {
       logo: 'https://blcompiler.com/logo.png',
       description:
         'BLC bridges the gap between academic learning and real-world industry through structured placement training, mentorship, and career strategy for engineering students in Bangalore.',
-      telephone: '+918722077934',
+      telephone: '+917026676671',
       email: 'info@blcompiler.com',
       address: {
         '@type': 'PostalAddress',
@@ -71,7 +71,11 @@ const organizationSchema = {
         '@type': 'Person',
         name: 'Vishal Vanaki',
       },
-      sameAs: [],
+      sameAs: [
+        'https://www.instagram.com/blcompiler/',
+        'https://www.youtube.com/@BehaveLikeCompiler/',
+        'https://www.linkedin.com/company/blcompiler',
+      ],
     },
     {
       '@type': 'ItemList',

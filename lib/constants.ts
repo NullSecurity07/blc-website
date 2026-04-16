@@ -104,9 +104,15 @@ export const COLLEGE_LOGOS = [
 ]
 
 export const CONTACT = {
-  phone: '+91 8722077934',
-  email: 'info@blcompiler.com', // ⚠️ TEMP — confirm real email
-  address: 'Bangalore, Karnataka, India', // ⚠️ TEMP — confirm full address
+  phone: '+91 7026676671',
+  email: 'info@blcompiler.com',
+  address: 'Bangalore, Karnataka, India', // ⚠️ TEMP — confirm full street address + PIN
+}
+
+export const SOCIAL = {
+  instagram: 'https://www.instagram.com/blcompiler/',
+  youtube: 'https://www.youtube.com/@BehaveLikeCompiler/',
+  linkedin: 'https://www.linkedin.com/company/blcompiler',
 }
 
 export const SKILL_TREE = [
