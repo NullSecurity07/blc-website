@@ -42,20 +42,15 @@ function TerminalBody() {
         )
       )}
 
-      {/* Blinking cursor */}
+      {/* Blinking cursor — CSS animation avoids Framer Motion easing limitation */}
       <motion.span
         initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0, 1] }}
+        animate={{ opacity: 1 }}
         transition={{ delay: heroSequence.visual.delay + 1.4, duration: 0.1 }}
-        className="inline-block"
+        className="inline-block animate-blink"
+        style={{ color: 'rgba(139,185,247,0.8)' }}
       >
-        <motion.span
-          animate={{ opacity: [1, 0, 1] }}
-          transition={{ duration: 1, repeat: Infinity, ease: 'steps(1)' }}
-          style={{ color: 'rgba(139,185,247,0.8)' }}
-        >
-          ▋
-        </motion.span>
+        ▋
       </motion.span>
     </div>
   )

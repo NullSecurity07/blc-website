@@ -23,11 +23,16 @@ export function Testimonials() {
 
   // Scroll active card into view within the carousel container only
   useEffect(() => {
-    if (!scrollRef.current) return
-    const card = scrollRef.current.children[activeIndex] as HTMLElement
+    const container = scrollRef.current
+    if (!container) return
+    const card = container.children[activeIndex] as HTMLElement
     if (!card) return
-    scrollRef.current.scrollTo({
-      left: card.offsetLeft - scrollRef.current.offsetLeft,
+    // getBoundingClientRect gives viewport-relative positions, adjusting for
+    // current scrollLeft gives the exact horizontal offset within the container
+    const containerRect = container.getBoundingClientRect()
+    const cardRect = card.getBoundingClientRect()
+    container.scrollTo({
+      left: container.scrollLeft + (cardRect.left - containerRect.left),
       behavior: 'smooth',
     })
   }, [activeIndex])
@@ -66,11 +71,11 @@ export function Testimonials() {
           {/* Cards */}
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 px-1"
+            className="flex gap-6 overflow-x-auto pb-4 px-1"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {TESTIMONIALS.map((t) => (
-              <div key={t.id} className="snap-center">
+              <div key={t.id}>
                 <TestimonialCard {...t} />
               </div>
             ))}
