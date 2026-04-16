@@ -15,11 +15,11 @@
 
 ## Current State
 
-**Status:** ✅ Session 3 complete — Hero terminal animation, circular Loop Model, WhatsApp button, 404 page, JSON-LD schema. Build clean. Ready for GitHub push + Vercel deploy.
+**Status:** ✅ Session 4 complete — next/font migration, expanded OG/Twitter metadata, Playwright visual audit, GitHub push. Repo live at https://github.com/NullSecurity07/blc-website. Ready for Vercel deploy.
 
-**Last completed task:** Session 3 — UI upgrades + SEO schema + production polish
+**Last completed task:** Session 4 — performance + SEO metadata + GitHub push
 
-**Next action:** Push to GitHub → connect Vercel → domain blcompiler.com → fill in real content from founder.
+**Next action:** Import repo into Vercel → connect blcompiler.com → fill in real content from founder → create og-image.png.
 
 **Blocking items (content — not dev blockers):**
 - Real placement stats → update `lib/constants.ts` STATS array
@@ -39,6 +39,51 @@
 ---
 
 ## Session Log
+
+### Session 4 — 2026-04-16
+
+**What was done:**
+- Migrated font loading from CSS `@import url(...)` to `next/font/google` — `JetBrains_Mono` with `variable: '--font-jetbrains-mono'`, applied to `<html>` tag. Removed render-blocking Google Fonts network request. Updated `tailwind.config.ts` to use `var(--font-jetbrains-mono)` and `globals.css` body to use `var(--font-jetbrains-mono)`.
+- Expanded metadata in `app/layout.tsx`: added `metadataBase`, `alternates.canonical`, `keywords[]`, full `openGraph.images` with dimensions, and `twitter` card (`summary_large_image`) — all referencing `/og-image.png` placeholder.
+- Playwright visual audit: homepage desktop (full page), mobile 375×812 (full page), /programs page, /not-found 404 page. All sections render correctly, font migration caused zero regressions.
+- Fixed git history: initial commit had included `.next/` build artifacts before `.gitignore` was added. Created clean orphan branch (`clean-master`), committed all 47 source files (no build artifacts), pushed to GitHub.
+- Created GitHub repo: `NullSecurity07/blc-website` — public, connected to local master via push.
+
+**Decisions made:**
+- Used orphan branch approach to clean history rather than `git filter-repo` (not installed) or `filter-branch` (deprecated) — clean slate for a new repo is correct here, JOURNAL.md preserves session context
+- `next/font/google` generates CSS variable at build time, self-hosts font files — zero third-party font requests at runtime, LCP improvement for Core Web Vitals
+
+**Files modified:**
+- `app/globals.css` — removed @import, updated font-family to var(--font-jetbrains-mono)
+- `app/layout.tsx` — JetBrains_Mono import, variable applied to <html>, expanded metadata
+- `tailwind.config.ts` — font mono uses CSS variable
+- `JOURNAL.md` — this update
+
+**Playwright screenshots generated:**
+- `session4-homepage-fullpage.png` — homepage desktop full-page
+- `session4-mobile-fullpage.png` — homepage at 375px full-page
+- `session4-programs-fullpage.png` — /programs page desktop
+- `session4-404.png` — custom 404 page viewport
+
+**Current state after this session:**
+- Repo live: https://github.com/NullSecurity07/blc-website
+- Build clean, font self-hosted, full OG+Twitter metadata, JSON-LD schema in place
+- Ready for Vercel deploy — import repo, auto-detects Next.js, zero config needed
+- Content placeholders remain (logos, testimonials, stats, founder photo)
+
+**Next action:**
+1. Vercel deploy: go to vercel.com → Import → NullSecurity07/blc-website → Deploy
+2. Set custom domain: blcompiler.com → Add domain in Vercel project settings
+3. Create Formspree account → replace `YOUR_FORMSPREE_ID` in `app/contact/page.tsx`
+4. Replace placeholder content in `lib/constants.ts` once founder provides real data
+5. Upload `/public/og-image.png` (1200×630) for Twitter/OG card previews
+
+**Open questions / blockers:**
+- Client content still pending (logos, testimonials, stats, photos, real email, address)
+- Formspree endpoint ID needed
+- og-image.png needs to be created and placed in /public
+
+---
 
 ### Session 3 — 2026-04-16
 
