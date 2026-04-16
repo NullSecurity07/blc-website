@@ -15,11 +15,11 @@
 
 ## Current State
 
-**Status:** ✅ Session 4 complete — next/font migration, expanded OG/Twitter metadata, Playwright visual audit, GitHub push. Repo live at https://github.com/NullSecurity07/blc-website. Ready for Vercel deploy.
+**Status:** ✅ Session 5 complete — branded favicon, Next.js ImageResponse OG image, build clean at 11 routes. Repo pushed to GitHub. Ready for Vercel deploy.
 
-**Last completed task:** Session 4 — performance + SEO metadata + GitHub push
+**Last completed task:** Session 5 — favicon + generated OG image + push
 
-**Next action:** Import repo into Vercel → connect blcompiler.com → fill in real content from founder → create og-image.png.
+**Next action:** Import repo into Vercel → connect blcompiler.com → Formspree ID → real content from founder.
 
 **Blocking items (content — not dev blockers):**
 - Real placement stats → update `lib/constants.ts` STATS array
@@ -39,6 +39,45 @@
 ---
 
 ## Session Log
+
+### Session 5 — 2026-04-16
+
+**What was done:**
+- Created `app/icon.svg` — branded BLC favicon (32×32, navy `#1E328B` background, rounded rect, yellow `#FEBB39` "BLC" monogram). Next.js App Router auto-registers this as the site favicon at `/icon.svg` — no manual link tag needed.
+- Created `app/opengraph-image.tsx` — Next.js `ImageResponse` (edge runtime) generating a 1200×630 OG image at `/opengraph-image`. Renders: dot-grid navy background, BLC monogram badge, eyebrow chip, headline with yellow accent, subtext, 4-stat row (500+ Students, 85% Placement Rate, 15+ Companies, 10+ Colleges). Auto-registered as `og:image` and `twitter:image` by Next.js — no static PNG file needed.
+- Removed `/og-image.png` references from `app/layout.tsx` `openGraph.images` and `twitter.images` — file-based metadata takes precedence and avoids duplicate meta tags.
+- Build verified: 11 routes, TypeScript clean, edge runtime warning on `/opengraph-image` is expected and harmless.
+- Pushed to GitHub: `NullSecurity07/blc-website`.
+
+**Decisions made:**
+- Used `app/icon.svg` (file-based) over `public/favicon.ico` — App Router convention, auto-discovered, no head tag needed
+- Used `ImageResponse` over static PNG — generated from code means it can be updated easily without design tools; edge runtime means it works on Vercel edge network
+- Removed static image refs from metadata config — avoids duplicate `og:image` tags since file-based metadata wins in Next.js 14
+
+**Files created:**
+- `app/icon.svg` — branded favicon
+- `app/opengraph-image.tsx` — generated OG/social preview image
+
+**Files modified:**
+- `app/layout.tsx` — removed openGraph.images + twitter.images (handled by opengraph-image.tsx)
+- `JOURNAL.md` — this update
+
+**Current state after this session:**
+- Full SEO: schema, sitemap, robots, favicon, OG image, Twitter card, canonical, keywords
+- 11 routes building clean
+- Repo live: https://github.com/NullSecurity07/blc-website
+
+**Next action:**
+1. Vercel deploy: vercel.com → Import → `NullSecurity07/blc-website` → Deploy
+2. Add domain `blcompiler.com` in Vercel → Settings → Domains
+3. Formspree: create account → replace `YOUR_FORMSPREE_ID` in `app/contact/page.tsx`
+4. Replace placeholder content in `lib/constants.ts` once founder delivers assets
+
+**Open questions / blockers:**
+- Real content (stats, testimonials, logos, founder photo, email, address) pending from client
+- Formspree endpoint ID needed for contact form to go live
+
+---
 
 ### Session 4 — 2026-04-16
 

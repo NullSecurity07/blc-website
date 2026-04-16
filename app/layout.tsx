@@ -37,21 +37,12 @@ export const metadata: Metadata = {
     siteName: 'Behave Like Compiler',
     locale: 'en_IN',
     type: 'website',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'Behave Like Compiler — Engineering Career Training',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Behave Like Compiler — Engineering Career Training | Bangalore',
     description:
       'BLC bridges academic learning and real-world industry with hands-on training, placement support, and career strategy for engineering students.',
-    images: ['/og-image.png'],
   },
 }
 
